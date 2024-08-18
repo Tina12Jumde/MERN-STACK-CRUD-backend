@@ -107,4 +107,21 @@ let GetFormData = async (req,res) =>{
 }
   
 
-export {GetHome , PostAcceptFrom , GetFormData , FetchData, DeleteData}
+const updateData = async (req, res) => {
+    let data = req.body;
+    try {
+        const dataLength = Object.keys(data).length
+        const dataKey = Object.keys(data)
+        const dataValue = Object.values(data)
+
+        for (let i = 0; i < dataLength; i++) {
+            await DataModel.updateOne({ _id: data._id }, { $set: { [dataKey[i]]: dataValue[i] } })
+        }
+        res.status(200).json({ message: 'Data updated successfully !' })
+    } catch (err) {
+        res.status(200).json({ message: "Unable to update data !" })
+    }
+}
+
+
+export {GetHome , PostAcceptFrom , GetFormData , FetchData, DeleteData, updateData}

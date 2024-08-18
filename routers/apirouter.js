@@ -1,6 +1,6 @@
 import express from "express" 
 
-import {GetHome , PostAcceptFrom , GetFormData , FetchData , DeleteData} from "../controllers/apicontroller.js"
+import {GetHome , PostAcceptFrom , GetFormData , FetchData , DeleteData, updateData} from "../controllers/apicontroller.js"
 
 let ApiRouter=express()
 
@@ -14,5 +14,6 @@ ApiRouter.get("/fetchData", FetchData)
 
 ApiRouter.delete("/delete/:id", DeleteData)
 
+ApiRouter.put("/updateData",updateData)
 
 export {ApiRouter}
